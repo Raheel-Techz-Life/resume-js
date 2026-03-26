@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#050810;--bg2:#080d1a;--bg3:#0d1426;--surface:#0f1830;--surface2:#141f3a;--accent:#00d4ff;--accent2:#7b5ea7;--accent3:#ff6b35;--text:#e8eaf2;--text2:#8892aa;--text3:#4a5568;--border:rgba(0,212,255,.12);--border2:rgba(0,212,255,.06);--glow:rgba(0,212,255,.15);--mono:'Space Mono',monospace;--display:'Syne',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--display);overflow-x:hidden;cursor:none}
-#cursor{position:fixed;top:0;left:0;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s ease,opacity .2s ease;mix-blend-mode:screen}
-#cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1px solid rgba(0,212,255,.4);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .35s cubic-bezier(.25,.46,.45,.94)}body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.4}body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+*{box-sizing:border-box;margin:0;padding:0;cursor:none !important}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--display);overflow-x:hidden}
+#cursor{position:fixed;top:0;left:0;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s ease,opacity .2s ease;mix-blend-mode:screen;margin:-6px 0 0 -6px}
+#cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1px solid rgba(0,212,255,.4);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .35s cubic-bezier(.25,.46,.45,.94);margin:-18px 0 0 -18px}body:has(a:hover) #cursor, body:has(button:hover) #cursor, body:has(.card:hover) #cursor, body:has(.item:hover) #cursor { transform: scale(3.5); opacity: 0.5; }body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.4}body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(5,8,16,.95) 0%,transparent 100%);backdrop-filter:blur(12px);border-bottom:1px solid var(--border2)}
 .nav-logo{font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;letter-spacing:.1em;display:flex;align-items:center;gap:8px}.nav-logo span{color:var(--text2)}.nav-links{display:flex;gap:36px;list-style:none}.nav-links a{font-family:var(--mono);font-size:11px;color:var(--text2);text-decoration:none;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s ease}.nav-links a:hover{color:var(--accent)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--accent)}.nav-toggle{display:none;flex-direction:column;background:none;border:none;cursor:pointer;gap:6px;z-index:101}.nav-toggle span{width:24px;height:2px;background:var(--accent);transition:all .3s ease;border-radius:2px}.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(10px,10px)}.nav-toggle.active span:nth-child(2){opacity:0}.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
 .status-dot{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:#00ff88}.status-dot::before{content:'';width:6px;height:6px;background:#00ff88;border-radius:50%;animation:pulse-green 2s ease-in-out infinite}@keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.4)}50%{box-shadow:0 0 0 6px rgba(0,255,136,0)}}
@@ -28,8 +28,8 @@ h1{font-size:clamp(52px,8vw,112px);font-weight:800;line-height:.9;letter-spacing
 
 /* Disable custom cursor on touch */
 @media (max-width: 767px) {
-  #cursor, #cursor-ring { display: none; }
-  body { cursor: auto; }
+  #cursor, #cursor-ring { display: none !important; }
+  *, body { cursor: auto !important; }
 }
 
 /* Tablet: 768px - 1024px */
@@ -46,8 +46,8 @@ h1{font-size:clamp(52px,8vw,112px);font-weight:800;line-height:.9;letter-spacing
 
 /* Mobile: up to 767px */
 @media (max-width: 767px) {
-  #cursor, #cursor-ring { display: none; }
-  body { cursor: auto; }
+  #cursor, #cursor-ring { display: none !important; }
+  *, body { cursor: auto !important; }
   
   nav { padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 0; }
   .nav-logo { font-size: 12px; width: 100%; display: flex; justify-content: space-between; align-items: center; }
@@ -161,9 +161,11 @@ h1{font-size:clamp(52px,8vw,112px);font-weight:800;line-height:.9;letter-spacing
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
   function animateCursor() {
-    cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+    cursor.style.left = `${mx}px`;
+    cursor.style.top = `${my}px`;
     rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+    ring.style.left = `${rx}px`;
+    ring.style.top = `${ry}px`;
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
