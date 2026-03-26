@@ -111,6 +111,33 @@
   .nav-links a:hover::after { width: 100%; }
   .nav-links a.active{color:var(--accent)}
 
+  /* ── HAMBURGER MENU ── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 101;
+  }
+  .nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+  .nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+  }
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
   .status-dot{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:#00ff88}.status-dot::before{content:'';width:6px;height:6px;background:#00ff88;border-radius:50%;animation:pulse-green 2s ease-in-out infinite}@keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.4)}50%{box-shadow:0 0 0 6px rgba(0,255,136,0)}}
 
   /* ── SECTIONS ── */
@@ -806,25 +833,60 @@
     
     /* Navigation */
     nav { 
-      padding: 16px 20px; 
-      flex-wrap: wrap;
+      padding: 14px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      position: fixed;
     }
     .nav-logo { 
       font-size: 12px;
       width: 100%;
-      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .nav-links { 
-      display: none; 
-      width: 100%;
-      gap: 8px;
+    .nav-toggle { 
+      display: flex;
+    }
+    .nav-links {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
       flex-direction: column;
+      gap: 0;
+      background: linear-gradient(180deg, rgba(5,8,16,0.98) 0%, rgba(5,8,16,0.95) 100%);
+      border-bottom: 1px solid var(--border2);
+      padding: 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
     }
-    .nav-links.active { display: flex; }
+    .nav-links.active {
+      max-height: 400px;
+    }
+    .nav-links li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border2);
+    }
+    .nav-links li:last-child {
+      border-bottom: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      display: block;
+      padding: 8px 0;
+    }
+    .nav-links a::after {
+      display: none;
+    }
     .status-dot { 
-      width: 100%;
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
       font-size: 10px;
-      justify-content: center;
+      justify-content: flex-start;
     }
     
     /* Hero Section */
@@ -1179,7 +1241,12 @@
   <a href="#hero" class="nav-logo">
     Rhlz
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="projects.html">Projects</a></li>
     <li><a href="experience.html">Experience</a></li>
     <li><a href="achievements.html">Awards</a></li>
@@ -1601,6 +1668,21 @@
 </footer>
 
 <script>
+  // ── HAMBURGER MENU ──
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+
   // ── CURSOR ──
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');

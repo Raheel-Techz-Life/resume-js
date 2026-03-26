@@ -144,10 +144,13 @@ h1{font-size:clamp(52px,8vw,112px);font-weight:800;line-height:.9;letter-spacing
 <div id="cursor-ring"></div>
 
 <nav>
-  <a href="index.html" class="nav-logo">
-    Rhlz
-  </a>
-  <ul class="nav-links">
+  <a href="index.html" class="nav-logo">Rhlz</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="projects.html">Projects</a></li>
     <li><a class="active" href="experience.html">Experience</a></li>
     <li><a href="achievements.html">Awards</a></li>
@@ -210,6 +213,20 @@ h1{font-size:clamp(52px,8vw,112px);font-weight:800;line-height:.9;letter-spacing
 </html>
 
 <script>
+  // ── HAMBURGER MENU ──
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+
   // ── CURSOR ──
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
