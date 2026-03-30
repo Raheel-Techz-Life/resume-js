@@ -251,7 +251,7 @@ export default function Home() {
         <span className="tag">IVR</span>
         <span className="tag">WhatsApp API</span>
       </div>
-      <div style={{"marginTop":"16px"}} className="project-award" style={{"fontSize":"10px"}}>🥉 3rd Place — ONEST Hackathon 2025</div>
+      <div className="project-award" style={{"marginTop":"16px", "fontSize":"10px"}}>🥉 3rd Place — ONEST Hackathon 2025</div>
       <div className="project-corner">04</div>
     </div>
 

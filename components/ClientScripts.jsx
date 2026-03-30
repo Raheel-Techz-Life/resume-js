@@ -17,6 +17,11 @@ export default function ClientScripts() {
     }, { threshold: 0.15 });
     document.querySelectorAll('.timeline-item, .project-card, .achievement-card, .work-card').forEach(el => observer.observe(el));
 
+    const overlay = document.querySelector('.loading-overlay');
+    if (overlay) {
+      setTimeout(() => overlay.classList.add('hidden'), 3100);
+    }
+
     // 2. Card Tilt
     const handleMouseMove = (e) => {
       const card = e.currentTarget;

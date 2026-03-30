@@ -1,7 +1,21 @@
 import Navigation from '../components/Navigation';
 import Cursor from '../components/Cursor';
 import ClientScripts from '../components/ClientScripts';
+import { Space_Mono, Syne } from 'next/font/google';
 import './globals.css';
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-mono',
+});
+
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-display',
+});
 
 export const metadata = {
   title: 'Raheel Hosmani — AI/ML Engineer',
@@ -10,10 +24,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={`${spaceMono.variable} ${syne.variable}`}>
       <body>
         <Cursor />
         <Navigation />
